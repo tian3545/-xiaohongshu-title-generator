@@ -10,7 +10,7 @@ from coze_coding_utils.runtime_ctx.context import default_headers
 from storage.memory.memory_saver import get_memory_saver
 
 # 导入工具
-from tools.image_generation_tool import generate_post_image
+from tools.image_generation_tool import generate_post_image, generate_post_images
 
 LLM_CONFIG = "config/agent_llm_config.json"
 TEMPLATES_FILE = "assets/xiaohongshu_templates.json"
@@ -164,7 +164,7 @@ def build_agent(ctx=None):
     return create_agent(
         model=llm,
         system_prompt=enhanced_prompt,
-        tools=[generate_post_image],
+        tools=[generate_post_image, generate_post_images],
         checkpointer=get_memory_saver(),
         state_schema=AgentState,
     )
