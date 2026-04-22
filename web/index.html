@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书文案生成器 - 按次付费模式</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 登录前显示 -->
+        <div id="loginSection" class="login-section">
+            <div class="header">
+                <h1>🌸 小红书文案生成器</h1>
+                <p class="subtitle">一键生成爆款文案 + 精美配图</p>
+            </div>
+
+            <div class="form-section">
+                <div class="form-group">
+                    <label>邮箱地址</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="请输入您的邮箱"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label>验证码</label>
+                    <div class="code-input-group">
+                        <input
+                            type="text"
+                            id="verificationCode"
+                            placeholder="请输入验证码"
+                            maxlength="6"
+                        />
+                        <button
+                            class="btn-code"
+                            id="btnSendCode"
+                            onclick="sendCode()"
+                        >
+                            发送验证码
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="login()">
+                    📧 邮箱登录/注册
+                </button>
+
+                <p class="tips">
+                    💡 首次使用会自动注册，新用户免费1次生成
+                </p>
+            </div>
+        </div>
+
+        <!-- 登录后显示 -->
+        <div id="mainSection" class="main-section" style="display: none;">
+            <div class="header">
+                <h1>🌸 小红书文案生成器</h1>
+                <div class="user-info">
+                    <span id="userEmail"></span>
+                    <button class="btn-logout" onclick="logout()">退出</button>
+                </div>
+            </div>
+
+            <!-- 余额显示 -->
+            <div class="balance-card">
+                <div class="balance-item">
+                    <div class="balance-label">剩余次数</div>
+                    <div class="balance-value" id="remainingCount">0</div>
+                </div>
+                <div class="balance-divider"></div>
+                <div class="balance-item">
+                    <div class="balance-label">已使用</div>
+                    <div class="balance-value" id="totalUsed">0</div>
+                </div>
+                <div class="balance-divider"></div>
+                <div class="balance-item">
+                    <div class="balance-label">已购买</div>
+                    <div class="balance-value" id="totalPurchased">0</div>
+                </div>
+            </div>
+
+            <!-- 生成表单 -->
+            <div class="form-section">
+                <div class="form-group">
+                    <label>输入主题</label>
+                    <input
+                        type="text"
+                        id="topic"
+                        placeholder="例如：春季穿搭、夏日防晒、运动健身..."
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label class="switch-label">
+                        <input type="checkbox" id="needImages" checked />
+                        <span>生成配图（每次消耗1次）</span>
+                    </label>
+                </div>
+
+                <button class="btn-primary" onclick="generateContent()">
+                    <span id="btnGenerateText">🎨 开始生成</span>
+                </button>
+            </div>
+
+            <!-- 购买套餐 -->
+            <div class="packages-section">
+                <h2>📦 购买套餐</h2>
+                <div class="packages-grid" id="packagesGrid">
+                    <!-- 套餐列表会动态加载 -->
+                </div>
+            </div>
+
+            <!-- 生成结果 -->
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-header">
+                    <h2>生成结果</h2>
+                    <button class="btn-copy" onclick="copyContent()">
+                        📋 复制文案
+                    </button>
+                </div>
+
+                <div class="content-preview">
+                    <div class="title" id="resultTitle"></div>
+                    <div class="body" id="resultBody"></div>
+                    <div class="tags" id="resultTags"></div>
+                </div>
+
+                <div class="images-grid" id="resultImages"></div>
+            </div>
+
+            <!-- 使用记录 -->
+            <div class="history-section">
+                <h2>📜 使用记录</h2>
+                <div class="history-list" id="historyList">
+                    <!-- 历史记录会动态加载 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
