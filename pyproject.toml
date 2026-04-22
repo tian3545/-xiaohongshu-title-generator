@@ -39,6 +39,9 @@ dependencies = [
     "pycairo==1.29.0",
     "dbus-python==1.3.2",
     "PyGObject==3.48.2",
+    "passlib[bcrypt]>=1.7.4",
+    "python-jose[cryptography]>=3.5.0",
+    "email-validator>=2.3.0",
 ]
 
 [tool.uv]
